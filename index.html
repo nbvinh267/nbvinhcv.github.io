@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyễn Bá Vinh | Relationship Management Associate</title>
+  <style>
+    :root {
+      --bg: #fff6f6;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: rgba(185, 28, 28, 0.12);
+      --accent: #d70018;
+      --accent-2: #b91c1c;
+      --chip: rgba(215, 0, 24, 0.08);
+      --shadow: 0 20px 50px rgba(140, 18, 18, 0.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(215,0,24,.12), transparent 22%),
+        radial-gradient(circle at top left, rgba(185,28,28,.08), transparent 18%),
+        linear-gradient(180deg, #fffdfd 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 56px 0 28px; }
+    .hero-grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 24px; align-items: stretch; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.92));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero-main { padding: 34px; background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%); }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+      background: var(--chip); color: var(--accent-2); font-weight: 700; font-size: 14px; border: 1px solid rgba(215,0,24,.15);
+    }
+    h1 { margin: 16px 0 8px; font-size: clamp(34px, 5vw, 58px); line-height: 1.05; letter-spacing: -.02em; color: #7f1d1d; }
+    .subtitle { font-size: clamp(18px, 2vw, 24px); color: var(--accent); margin: 0 0 12px; font-weight: 800; }
+    .summary { color: var(--muted); max-width: 720px; margin: 0 0 20px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 18px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: .2s ease;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #ef4444); color: white; box-shadow: 0 10px 24px rgba(215,0,24,.18); }
+    .btn-secondary { background: white; border: 1px solid rgba(215,0,24,.18); color: var(--accent-2); }
+    .btn:hover { transform: translateY(-1px); opacity: .96; }
+    .hero-visual {
+      margin-top: 26px; width: 100%; min-height: 340px; border-radius: 22px; overflow: hidden;
+      border: 1px solid rgba(215,0,24,.12); box-shadow: 0 14px 30px rgba(215,0,24,.10); background: #fff1f2;
+    }
+    .hero-visual img { width: 100%; height: 100%; min-height: 340px; object-fit: cover; object-position: center 20%; display: block; }
+    .hero-side { padding: 28px; display: flex; flex-direction: column; gap: 14px; background: linear-gradient(180deg, #fff7f7, #fffdfd); }
+    .avatar {
+      width: 132px; height: 132px; border-radius: 24px; overflow: hidden; border: 3px solid rgba(215,0,24,.14);
+      box-shadow: 0 14px 28px rgba(215,0,24,.12); background: rgba(255,255,255,.7);
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; display: block; }
+    .side-title { font-size: 18px; font-weight: 800; margin: 6px 0 0; color: #7f1d1d; }
+    .info-list { display: grid; gap: 10px; margin-top: 10px; }
+    .info-item { padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.88); border: 1px solid var(--line); }
+    .info-item strong { display: block; font-size: 13px; color: #991b1b; margin-bottom: 2px; text-transform: uppercase; letter-spacing: .06em; }
+    section { padding: 12px 0 18px; }
+    .section-title { font-size: 28px; margin: 0 0 18px; letter-spacing: -.02em; color: #7f1d1d; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .panel { padding: 24px; }
+    .timeline { display: grid; gap: 16px; }
+    .timeline-item { position: relative; padding-left: 18px; border-left: 2px solid rgba(215,0,24,.22); }
+    .timeline-item::before {
+      content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
+      position: absolute; left: -6px; top: 8px;
+    }
+    .timeline-item h3 { margin: 0 0 4px; font-size: 18px; color: #991b1b; }
+    .meta { color: #9a6b6b; font-size: 14px; margin-bottom: 6px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,.95); border: 1px solid var(--line); color: #7f1d1d; font-size: 14px; font-weight: 600; }
+    ul.clean { margin: 0; padding-left: 18px; color: var(--muted); }
+    .highlight { color: var(--accent-2); font-weight: 700; }
+    a.inline-link { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a.inline-link:hover { text-decoration: underline; }
+    footer { padding: 18px 0 42px; color: #8f6b6b; font-size: 14px; text-align: center; }
+    @media (max-width: 900px) { .hero-grid, .grid-2 { grid-template-columns: 1fr; } .hero-main, .hero-side, .panel { padding: 22px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="hero-grid">
+        <div class="card hero-main">
+          <div class="badge">CV Landing Page • Banking / Techcombank-ready</div>
+          <h1>Nguyễn Bá Vinh</h1>
+          <p class="subtitle">Relationship Management Associate</p>
+          <p class="summary">
+            Với nền tảng kiến thức chuyên ngành cùng kinh nghiệm tích lũy tại môi trường ngân hàng, tôi mong muốn ứng tuyển vào chương trình
+            <span class="highlight">Relationship Management Associate tại Techcombank</span>. Tôi kỳ vọng có thể vận dụng hiệu quả kiến thức Tài chính – Ngân hàng,
+            kỹ năng hỗ trợ khách hàng, xử lý hồ sơ và tư duy công nghệ để mang lại giá trị cho khách hàng, đồng thời phát triển lâu dài trong môi trường chuyên nghiệp của ngân hàng.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="mailto:nbvinh267@gmail.com">Liên hệ qua Email</a>
+            <a class="btn btn-secondary" href="https://www.facebook.com/nbvinh99" target="_blank" rel="noreferrer">Facebook cá nhân</a>
+            <a class="btn btn-secondary" href="./assets/Nguyen-Ba-Vinh-CV.pdf" download>⬇ Tải CV PDF</a>
+          </div>
+          <div class="hero-visual">
+            <img src="./assets/vinh-portrait.jpg" alt="Ảnh Nguyễn Bá Vinh" />
+          </div>
+        </div>
+
+        <aside class="card hero-side">
+          <div class="avatar"><img src="./assets/vinh-portrait.jpg" alt="Ảnh đại diện Nguyễn Bá Vinh" /></div>
+          <div class="side-title">Thông tin cá nhân</div>
+          <div class="info-list">
+            <div class="info-item"><strong>Họ tên</strong>Nguyễn Bá Vinh</div>
+            <div class="info-item"><strong>Ngày sinh</strong>26/07/2003</div>
+            <div class="info-item"><strong>Điện thoại</strong>03272 666 87</div>
+            <div class="info-item"><strong>Email</strong>nbvinh267@gmail.com</div>
+            <div class="info-item"><strong>Địa chỉ</strong>Bình Tân, TP. Hồ Chí Minh</div>
+            <div class="info-item"><strong>Facebook</strong>facebook.com/nbvinh99</div>
+            <div class="info-item"><strong>Thông tin thêm</strong>Đảng viên dự bị Đảng Cộng sản Việt Nam</div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section>
+      <div class="grid-2">
+        <div class="card panel">
+          <h2 class="section-title">Học vấn</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>Đại học Ngân hàng TP. Hồ Chí Minh</h3>
+              <div class="meta">2021 – 2025 • Tài chính - Ngân hàng</div>
+              <p>
+                Tốt nghiệp Cử nhân ngành Tài chính – Ngân hàng tại Trường Đại học Ngân hàng TP.HCM.
+                Trong suốt quá trình học tập và rèn luyện, tôi đạt được nhiều giấy khen và nhận được sự tín nhiệm từ tập thể, lãnh đạo trong các hoạt động Đoàn – Hội.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h2 class="section-title">Kỹ năng nổi bật</h2>
+          <div class="chips">
+            <div class="chip">Quan hệ khách hàng</div>
+            <div class="chip">Hỗ trợ tín dụng</div>
+            <div class="chip">Thu thập & kiểm tra hồ sơ</div>
+            <div class="chip">Phân tích tài chính cơ bản</div>
+            <div class="chip">AI & Automation</div>
+            <div class="chip">Microsoft Office</div>
+          </div>
+          <ul class="clean" style="margin-top:16px;">
+            <li><span class="highlight">Nghiệp vụ ngân hàng:</span> nắm quy trình cấp tín dụng và phát triển quan hệ khách hàng.</li>
+            <li><span class="highlight">Ứng dụng AI & Automation:</span> sử dụng Gemini, Copilot, ChatGPT, n8n, OpenClaw.</li>
+            <li><span class="highlight">Tác nghiệp:</span> sẵn sàng đi công tác, di chuyển gặp khách hàng và làm việc linh hoạt.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid-2">
+        <div class="card panel">
+          <h2 class="section-title">Kinh nghiệm làm việc</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>Ngân hàng TMCP Ngoại thương Việt Nam</h3>
+              <div class="meta">05/2025 – 12/2026 • Cộng tác viên Phòng Khách hàng Doanh nghiệp</div>
+              <ul class="clean">
+                <li>Hỗ trợ tiếp cận và chăm sóc khách hàng doanh nghiệp.</li>
+                <li>Thu thập, kiểm tra và hoàn thiện hồ sơ tín dụng, hồ sơ pháp lý của khách hàng.</li>
+                <li>Hỗ trợ nhập liệu, cập nhật thông tin khách hàng và theo dõi tiến độ hồ sơ.</li>
+                <li>Phối hợp xử lý các nghiệp vụ tín dụng và tài trợ thương mại như giải ngân, thu nợ, phát hành L/C và bảo lãnh.</li>
+              </ul>
+            </div>
+            <div class="timeline-item">
+              <h3>Ngân hàng TMCP Á Châu (ACB)</h3>
+              <div class="meta">09/2024 – 01/2025 • Thực tập sinh Phòng Khách hàng Cá nhân – The Next Banker</div>
+              <ul class="clean">
+                <li>Hỗ trợ tư vấn, chăm sóc khách hàng về sản phẩm dịch vụ ngân hàng.</li>
+                <li>Tham gia tìm kiếm và phát triển khách hàng tiềm năng.</li>
+                <li>Hỗ trợ xử lý hồ sơ, thủ tục giao dịch và tín dụng theo quy trình.</li>
+                <li>Phối hợp các bộ phận, cập nhật dữ liệu và báo cáo công việc.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h2 class="section-title">Dự án & Công nghệ</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>Personal AI Workflow Deployment using OpenClaw</h3>
+              <div class="meta">12/2025 – 03/2026 • Nhà phát triển dự án cá nhân</div>
+              <p>
+                Nghiên cứu và triển khai AI, n8n, OpenClaw, Claude... để xây dựng AI agent workflow hỗ trợ tìm kiếm, tổng hợp
+                và tóm tắt thông tin tài chính – kinh tế, xử lý nội dung báo cáo và hệ thống hóa dữ liệu phục vụ phân tích trong lĩnh vực ngân hàng.
+              </p>
+              <p>
+                Thực hiện cấu hình hệ thống, xử lý lỗi kết nối và tối ưu công cụ nhằm nâng cao tính ổn định và khả năng ứng dụng thực tiễn.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid-2">
+        <div class="card panel">
+          <h2 class="section-title">Hoạt động & Lãnh đạo</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>Đoàn Thanh niên - Hội Sinh viên Trường Đại học Ngân hàng TP.HCM</h3>
+              <div class="meta">2022 – 2025</div>
+              <ul class="clean">
+                <li>Liên Chi hội phó Liên Chi hội Sinh viên chương trình Chất lượng cao.</li>
+                <li>Ủy viên Ban Chấp hành Đoàn chương trình Chất lượng cao.</li>
+                <li>Ủy viên Ban Chấp hành Hội Sinh viên Trường Đại học Ngân hàng TP.HCM.</li>
+                <li>Ban Chỉ huy, Phó Đội hình Chiến dịch “Tiếp Sức Mùa Thi 2023”.</li>
+                <li>Thành viên BTC nhiều chương trình lớn nhỏ của Đoàn – Hội hệ Chất lượng cao.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h2 class="section-title">Danh hiệu & Giải thưởng</h2>
+          <div class="timeline">
+            <div class="timeline-item"><h3>Sinh viên Ngân hàng 5 tốt 3 năm liên tiếp</h3><div class="meta">2025 • Giai đoạn 2021 – 2024</div></div>
+            <div class="timeline-item"><h3>Hoàn thành xuất sắc nhiệm vụ công tác Hội</h3><div class="meta">2024</div></div>
+            <div class="timeline-item"><h3>Giải Ba quần vợt đơn nam HUB</h3><div class="meta">2024</div></div>
+            <div class="timeline-item"><h3>Hoàn thành xuất sắc nhiệm vụ công tác Đoàn</h3><div class="meta">2023</div></div>
+            <div class="timeline-item"><h3>Cán bộ Đoàn tích cực Tháng Thanh niên</h3><div class="meta">2023</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid-2">
+        <div class="card panel">
+          <h2 class="section-title">Chứng chỉ</h2>
+          <div class="chips">
+            <div class="chip">Tiếng Anh B2 VSTEP (2025)</div>
+            <div class="chip">Đại lý bảo hiểm Dai-ichi Life (2025)</div>
+            <div class="chip">Giấy phép lái xe hạng B1 (2022)</div>
+            <div class="chip">Tin học nâng cao (2022)</div>
+            <div class="chip">Hành nghề môi giới bất động sản (2022)</div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h2 class="section-title">Sở thích & Thông tin thêm</h2>
+          <ul class="clean">
+            <li><span class="highlight">Thể thao:</span> Bóng đá, Tennis, Cầu lông, Bóng bàn, Đá cầu, Cờ vua, Cờ tướng.</li>
+            <li><span class="highlight">Sở thích khác:</span> Nhiếp ảnh, tìm hiểu công nghệ, AI Agent, Automation.</li>
+            <li><span class="highlight">Công cụ cá nhân:</span> thành thạo thiết bị điện tử, Microsoft Office, ứng dụng di động hỗ trợ công việc.</li>
+            <li><span class="highlight">Di chuyển & tác nghiệp:</span> có kinh nghiệm lái xe đường dài, sẵn sàng công tác và gặp gỡ khách hàng tại khu công nghiệp, địa bàn xa.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card panel">
+        <h2 class="section-title">Liên hệ</h2>
+        <div class="grid-2">
+          <div>
+            <p><strong>Email:</strong> nbvinh267@gmail.com</p>
+            <p><strong>Điện thoại:</strong> 03272 666 87</p>
+            <p><strong>Facebook:</strong> <a class="inline-link" href="https://www.facebook.com/nbvinh99" target="_blank" rel="noreferrer">facebook.com/nbvinh99</a></p>
+            <p><strong>Địa chỉ:</strong> Bình Tân, TP. Hồ Chí Minh</p>
+          </div>
+          <div>
+            <p>
+              Landing page này đã được cập nhật theo CV mới, phù hợp hơn với định hướng ứng tuyển chương trình <span class="highlight">Relationship Management Associate</span> tại Techcombank.
+            </p>
+            <ul class="clean">
+              <li>Có ảnh đại diện thật</li>
+              <li>Có nút tải CV PDF</li>
+              <li>Phù hợp gửi HR hoặc đính kèm hồ sơ online</li>
+              <li>Nhấn mạnh kinh nghiệm ngân hàng, hoạt động lãnh đạo và ứng dụng AI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Designed for Nguyễn Bá Vinh • Relationship Management Associate Landing Page
+    </footer>
+  </div>
+</body>
+</html>
